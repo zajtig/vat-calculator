@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <springProperty scope="context" name="appName" source="spring.application.name"/>
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="co.elastic.logging.logback.EcsEncoder">
+            <serviceName>${appName:-}</serviceName>
+            <eventDataset>console</eventDataset>
+            <includeOrigin>true</includeOrigin>
+            <stackTraceAsArray>true</stackTraceAsArray>
+        </encoder>
+    </appender>
+    <root level="INFO">
+        <appender-ref ref="Console"/>
+    </root>
+</configuration>
